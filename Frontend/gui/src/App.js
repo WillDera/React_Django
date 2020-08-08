@@ -1,15 +1,16 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
 import "antd/dist/antd.css";
 
 // Containers
 import CustomLayout from "./containers/Layout";
+import ArticleList from "./containers/ArticleListView";
 
 function App() {
   return (
     <div className="App">
-      <CustomLayout></CustomLayout>
+      <CustomLayout>
+        <ArticleList />
+      </CustomLayout>
     </div>
   );
 }
