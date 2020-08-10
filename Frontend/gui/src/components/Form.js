@@ -1,24 +1,5 @@
 import React from "react";
-import { Form, Input, Button, Checkbox } from "antd";
-
-// const formItemLayout = {
-//   labelCol: {
-//     span: 4,
-//   },
-//   wrapperCol: {
-//     span: 8,
-//   },
-// };
-// const formTailLayout = {
-//   labelCol: {
-//     span: 4,
-//   },
-//   wrapperCol: {
-//     span: 8,
-//     offset: 4,
-//   },
-// };
-
+import { Form, Input, Button } from "antd";
 class CustomForm extends React.Component {
   render() {
     return (

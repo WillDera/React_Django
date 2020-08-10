@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 
 import Articles from "../components/Article";
+import CustomForm from "../components/Form";
 
 class ArticleList extends React.Component {
   state = {
