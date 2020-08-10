@@ -19,28 +19,16 @@ import { Form, Input, Button, Checkbox } from "antd";
 //   },
 // };
 
-class FormLayout extends React.Component {
+class CustomForm extends React.Component {
   render() {
     return (
       <div>
         <Form>
-          <Form.Item
-            name="username"
-            label="Name"
-            rules={[
-              {
-                required: true,
-                message: "Please input your name",
-              },
-            ]}
-          >
-            <Input placeholder="Please input your name" />
+          <Form.Item name="title" label="Title">
+            <Input placeholder="Please input title" />
           </Form.Item>
-          <Form.Item name="nickname" label="Nickname">
-            <Input placeholder="Please input your nickname" />
-          </Form.Item>
-          <Form.Item>
-            <Checkbox>Nickname is required</Checkbox>
+          <Form.Item name="content" label="Content">
+            <Input placeholder="Please input content" />
           </Form.Item>
           <Form.Item>
             <Button type="primary">Check</Button>
@@ -50,3 +38,5 @@ class FormLayout extends React.Component {
     );
   }
 }
+
+export default CustomForm;
