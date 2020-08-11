@@ -33,13 +33,13 @@ const CustomForm = () => {
 
   return (
     <Form form={form} name="dynamic_rule">
-      <Form.Item {...formItemLayout} name="title" label="Title">
+      <Form.Item name="title" label="Title">
         <Input placeholder="Please input title" />
       </Form.Item>
-      <Form.Item {...formItemLayout} name="content" label="Content">
+      <Form.Item name="content" label="Content">
         <Input placeholder="Please input content" />
       </Form.Item>
-      <Form.Item {...formTailLayout}>
+      <Form.Item>
         <Button type="primary" onClick={onSubmit}>
           Check
         </Button>
