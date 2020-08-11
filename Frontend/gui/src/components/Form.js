@@ -2,28 +2,10 @@ import React from "react";
 import { Form, Input, Button } from "antd";
 import axios from "axios";
 
-const formItemLayout = {
-  labelCol: {
-    span: 4,
-  },
-  wrapperCol: {
-    span: 8,
-  },
-};
-const formTailLayout = {
-  labelCol: {
-    span: 4,
-  },
-  wrapperCol: {
-    span: 8,
-    offset: 4,
-  },
-};
-
-const CustomForm = () => {
+const CustomForm = (props) => {
   const [form] = Form.useForm();
 
-  const onSubmit = async (requestType) => {
+  const onSubmit = async (requestType, articleID) => {
     try {
       const values = await form.validateFields();
       console.log("Success:", values);
@@ -51,6 +33,8 @@ const CustomForm = () => {
     }
   };
 
+  // console.log(props);
+
   return (
     <Form form={form} name="dynamic_rule">
       <Form.Item name="title" label="Title">
@@ -62,11 +46,9 @@ const CustomForm = () => {
       <Form.Item>
         <Button
           type="primary"
-          onClick={(event) =>
-            onSubmit(event, this.props.requestType, this.props.articleID)
-          }
+          onClick={onSubmit(props.requestType, props.articleID)}
         >
-          Check
+          {props.btnText}
         </Button>
       </Form.Item>
     </Form>
