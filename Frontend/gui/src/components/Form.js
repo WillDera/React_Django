@@ -12,7 +12,7 @@ const CustomForm = (props) => {
 
       switch (requestType) {
         case "post":
-          axios
+          return axios
             .post("http://127.0.0.1:8000/api/", {
               title: values.title,
               content: values.content,
@@ -20,7 +20,7 @@ const CustomForm = (props) => {
             .then((res) => console.log(res))
             .catch((err) => console.error(err));
         case "put":
-          axios
+          return axios
             .put(`http://127.0.0.1:8000/api/${articleID}/`, {
               title: values.title,
               content: values.content,
@@ -46,7 +46,7 @@ const CustomForm = (props) => {
       <Form.Item>
         <Button
           type="primary"
-          onClick={onSubmit(props.requestType, props.articleID)}
+          onClick={(event) => onSubmit(props.requestType, props.articleID)}
         >
           {props.btnText}
         </Button>
