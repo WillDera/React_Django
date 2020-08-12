@@ -5,7 +5,8 @@ import axios from "axios";
 const CustomForm = (props) => {
   const [form] = Form.useForm();
 
-  const onSubmit = async (requestType, articleID) => {
+  const onSubmit = async (event, requestType, articleID) => {
+    event.preventDefault();
     try {
       const values = await form.validateFields();
       console.log("Success:", values);
@@ -46,7 +47,9 @@ const CustomForm = (props) => {
       <Form.Item>
         <Button
           type="primary"
-          onClick={(event) => onSubmit(props.requestType, props.articleID)}
+          onClick={(event) =>
+            onSubmit(event, props.requestType, props.articleID)
+          }
         >
           {props.btnText}
         </Button>
