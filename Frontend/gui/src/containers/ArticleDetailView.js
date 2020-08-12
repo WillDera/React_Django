@@ -19,10 +19,12 @@ class ArticleDetail extends React.Component {
     });
   }
 
+  // TODO: Fix the bug here, the function isn't properly doing what it's meant to do
+  // TODO: Also find a way to either refresh on completion or not refresh but update the display
+
   handleDelete = (event) => {
-    // const articleID = this.props.match.params.articleID;
-    // axios.delete(`http://127.0.0.1:8000/api/${articleID}`);
-    console.log("deleted");
+    const articleID = this.props.match.params.articleID;
+    axios.delete(`http://127.0.0.1:8000/api/${articleID}`);
   };
 
   render() {
