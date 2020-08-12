@@ -19,12 +19,10 @@ class ArticleDetail extends React.Component {
     });
   }
 
-  // TODO: Fix the bug here, the function isn't properly doing what it's meant to do
-  // TODO: Also find a way to either refresh on completion or not refresh but update the display
-
-  handleDelete = (event) => {
+  handleDelete = () => {
     const articleID = this.props.match.params.articleID;
     axios.delete(`http://127.0.0.1:8000/api/${articleID}`);
+    this.props.history.push("/");
   };
 
   render() {
@@ -39,8 +37,8 @@ class ArticleDetail extends React.Component {
           btnText="Update"
         />
 
-        <form onSubmit={this.handleDelete}>
-          <Button type="danger" htmlType="submit">
+        <form>
+          <Button type="danger" onClick={this.handleDelete}>
             Delete
           </Button>
         </form>
