@@ -28,11 +28,11 @@ export const authLogin = (username, password) => {
 
     axios.post("http:127.0.0.1/rest-auth/login/", {
       username: username,
-      password: password,
+      password: password
     })
     .then(res => {
         const token = res.data.key,
-        const expirationDate = new Data(new Date().getTime() + 3)
+        const expirationDate = new Data(new Date().getTime() + 3600 * 1000)
     })
   };
 };
