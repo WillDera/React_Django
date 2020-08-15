@@ -13,7 +13,7 @@ const CustomLayout = (props) => {
           <Menu.Item key="1">
             <Link to="/">Post</Link>
           </Menu.Item>
-          {this.props.isAutheticated ? (
+          {props.isAutheticated ? (
             <Menu.Item key="2">Logout</Menu.Item>
           ) : (
             <Menu.Item key="2">
