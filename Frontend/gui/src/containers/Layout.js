@@ -1,6 +1,8 @@
 import React from "react";
 import { Layout, Breadcrumb, Menu } from "antd";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import * as actions from "../store/actions/auth";
 
 const { Header, Content } = Layout;
 
@@ -14,7 +16,9 @@ const CustomLayout = (props) => {
             <Link to="/">Post</Link>
           </Menu.Item>
           {props.isAutheticated ? (
-            <Menu.Item key="2">Logout</Menu.Item>
+            <Menu.Item key="2" onClick={props.logout}>
+              Logout
+            </Menu.Item>
           ) : (
             <Menu.Item key="2">
               <Link to="/login">Login</Link>
@@ -40,4 +44,11 @@ const CustomLayout = (props) => {
   );
 };
 
-export default CustomLayout;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logout: () => dispatch(actions.logout()),
+  };
+};
+
+// If mapStateToProps is unavailable/unused, just replace it with null
+export default connect(null, mapDispatchToProps)(CustomLayout);
