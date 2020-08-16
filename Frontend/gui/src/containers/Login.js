@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import * as actions from "../store/actions/auth";
 
 import { Form, Input, Button, Spin } from "antd";
 import { UserOutlined, LockOutlined, LoadingOutlined } from "@ant-design/icons";
@@ -9,7 +10,11 @@ const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
 const Login = (props) => {
   const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+    // console.log("Received values of form: ", values);
+    if (values) {
+      props.onAuth(values.username, values.password);
+    }
+    props.history.push("/");
   };
 
   let errorMessage = null;
@@ -61,7 +66,7 @@ const Login = (props) => {
             />
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" onClick={onFinish}>
               Login
             </Button>{" "}
             Or{" "}
@@ -82,4 +87,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Login);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onAuth: (username, password) =>
+      dispatch(actions.authLogin(username, password)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
