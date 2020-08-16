@@ -1,26 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
+import { connect } from "react-redux";
+import * as actions from "../store/actions/auth";
+import { Form, Input, Button } from "antd";
+import { NavLink } from "react-router-dom";
 import {
-  Form,
-  Input,
-  Tooltip,
-  Cascader,
-  Select,
-  Row,
-  Col,
-  Checkbox,
-  Button,
-  AutoComplete,
-} from "antd";
-import { QuestionCircleOutlined } from "@ant-design/icons";
+  UserOutlined,
+  MailOutlined,
+  LockOutlined,
+  LoadingOutlined,
+} from "@ant-design/icons";
 
-const { Option } = Select;
-const AutoCompleteOption = AutoComplete.Option;
-
-const Signup = () => {
+const Signup = (props) => {
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+    // console.log("Received values of form: ", values);
+    if (values) {
+      props.onAuth(
+        values.username,
+        values.email,
+        values.password,
+        values.confirm
+      );
+    }
+    props.history.push("/");
   };
 
   return (
@@ -51,7 +54,6 @@ const Signup = () => {
 
       <Form.Item
         name="email"
-        label="E-mail"
         rules={[
           {
             type: "email",
@@ -64,7 +66,7 @@ const Signup = () => {
         ]}
       >
         <Input
-          prefix={<UserOutlined className="site-form-item-icon" />}
+          prefix={<MailOutlined className="site-form-item-icon" />}
           type="mail"
           placeholder="Email"
         />
@@ -72,7 +74,6 @@ const Signup = () => {
 
       <Form.Item
         name="password"
-        label="Password"
         rules={[
           {
             required: true,
@@ -82,7 +83,7 @@ const Signup = () => {
         hasFeedback
       >
         <Input.Password
-          prefix={<UserOutlined className="site-form-item-icon" />}
+          prefix={<LockOutlined className="site-form-item-icon" />}
           type="password"
           placeholder="Password"
         />
@@ -90,7 +91,6 @@ const Signup = () => {
 
       <Form.Item
         name="confirm"
-        label="Confirm Password"
         dependencies={["password"]}
         hasFeedback
         rules={[
@@ -112,19 +112,37 @@ const Signup = () => {
         ]}
       >
         <Input.Password
-          prefix={<UserOutlined className="site-form-item-icon" />}
+          prefix={<LockOutlined className="site-form-item-icon" />}
           type="password"
           placeholder="Confirm Password"
         />
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit">
-          Signup
-        </Button>
+        <Button type="primary" onClick={onFinish}>
+          Sign Up
+        </Button>{" "}
+        Or{" "}
+        <NavLink style={{ marginRight: "10px" }} to="/login/">
+          Login
+        </NavLink>
       </Form.Item>
     </Form>
   );
 };
 
-export default Signup;
+const mapStateToProps = (state) => {
+  return {
+    loading: state.loading,
+    error: state.error,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onAuth: (username, email, password1, password2) =>
+      dispatch(actions.authSignup(username, email, password1, password2)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);
