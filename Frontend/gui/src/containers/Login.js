@@ -66,7 +66,7 @@ const Login = (props) => {
             />
           </Form.Item>
           <Form.Item>
-            <Button type="primary" onClick={onFinish}>
+            <Button type="primary" htmlType="submit">
               Login
             </Button>{" "}
             Or{" "}

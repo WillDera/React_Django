@@ -99,7 +99,7 @@ const Signup = (props) => {
             message: "Please confirm your password!",
           },
           ({ getFieldValue }) => ({
-            validator(rule, value) {
+            validator(value) {
               if (!value || getFieldValue("password") === value) {
                 return Promise.resolve();
               }
@@ -119,7 +119,7 @@ const Signup = (props) => {
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" onClick={onFinish}>
+        <Button type="primary" htmlType="submit">
           Sign Up
         </Button>{" "}
         Or{" "}
