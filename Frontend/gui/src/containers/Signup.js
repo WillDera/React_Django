@@ -15,14 +15,12 @@ const Signup = (props) => {
 
   const onFinish = (values) => {
     // console.log("Received values of form: ", values);
-    if (values) {
-      props.onAuth(
-        values.username,
-        values.email,
-        values.password,
-        values.confirm
-      );
-    }
+    props.onAuth(
+      values.username,
+      values.email,
+      values.password,
+      values.confirm
+    );
     props.history.push("/");
   };
 
@@ -99,7 +97,7 @@ const Signup = (props) => {
             message: "Please confirm your password!",
           },
           ({ getFieldValue }) => ({
-            validator(value) {
+            validator(rule, value) {
               if (!value || getFieldValue("password") === value) {
                 return Promise.resolve();
               }
